@@ -1,6 +1,6 @@
 Proyecto realizado por Mayra Azul Milanesio
 
-Objetivo final: Aplicación web para realizar un pedido de pastelería
+Objetivo final: Aplicación web para realizar pedidos a una pastelería
 
 Herramientas/Links utilizados:
 https://www.w3schools.com/
