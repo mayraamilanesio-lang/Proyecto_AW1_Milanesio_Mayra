@@ -31,7 +31,7 @@ body{
 
     .posicionlogo {
         display: block;
-        margin: 0 auto;      /* 👈 centra */
+        margin: 0 auto;
         width: 400px;
     }
 
@@ -66,6 +66,21 @@ body{
         margin-left: 50px; 
         margin-top: 10px;
     }
+
+    .btn-ingresar{  
+      margin-top: 10px;
+      background: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: 7px;
+      padding: 9px 20px;
+      font-size: 14.5px;
+      font-weight: 650;
+      font-family: "Quicksand", sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
 
     /*Login*/
     .login_container {
@@ -152,7 +167,7 @@ body{
     .products-section h2 {
       text-align: center;
       font-family: "Quicksand", sans-serif;
-      font-size: 2rem;
+      font-size: 32px;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 40px;
@@ -185,6 +200,8 @@ body{
     }
  
     .product-card h3 {
+      margin-top: auto;
+      display: block;
       font-size: 20px;
       font-weight: 700;
       color: var(--text);
@@ -192,16 +209,19 @@ body{
     }
  
     .product-card p {
+      margin-top: auto;
+      display: block;
       font-size: 17px;
       color: var(--primary);
       font-family: "Quicksand", sans-serif;
     }
  
     .product-price {
+      margin-top: auto;
+      display: block;
       font-size: 17px;
       font-weight: 700;
       color: var(--text);
-      margin-top: 4px;
       font-family: "Quicksand", sans-serif;
     }
  
