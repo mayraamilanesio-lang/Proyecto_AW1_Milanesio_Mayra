@@ -6,41 +6,70 @@
         <title>LUMI Bakery</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-        <link rel="icon" href="logoWEB.png">
+        <link rel="icon" href="img/logoWEB.png">
     </head>
 
     <body>
         <!--formato comentario-->
-        <br>
-        <h1 class="playwrite-ie-titulo">Bienvenidos a Lumi Bakery<br></h1>
+        <nav class="navbar">
+           <div class="logo">LUMI BAKERY</div>
+            <ul class="nav-links">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
 
-        <h2 class="subtitulos"><br>Registro de datos</h2>
+        <section id="home" class="Home">
+            <h1 class="playwrite-ie-titulo">Bienvenidos a<br><br></h1>
 
-        <form>
-        <label class="quicksand-label"><br>Nombre:<br></label>
-        <input type="text" name="nombre"><br>
+            <img src="img/logoLUMI.jpg" class="posicionlogo">
+        </section>
 
-        <label class="quicksand-label"><br>Apellido:<br></label>
-        <input type="text" name="apellido"><br>
 
-        <label class="quicksand-label"><br>Mail:<br></label>
-        <input type="email" name="mail"><br>
+        <section class="products-section" id="productos">
+            <h2>Productos</h2>
+            <div class="products-grid">
 
-        <label class="quicksand-label"><br>Contraseña:<br></label>
-        <input type="password" name="Contraseña"><br>
 
-        <label class="quicksand-label"><br>Fecha de nacimiento:<br></label>
-        <input type="date" name="Fecha de nacimiento"><br>
+                <div class="product-card">
+                    <h3>Chessecake</h3>
+                    <p>Base crocante con crema de queso y topping de frambuesas, moras y arándanos frescos.</p>
+                    <div class="product-price">$35.000</div>
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+
+                <div class="product-card">
+                    <h3>Lemon pie</h3>
+                    <p>Base crocante, crema de limón fresca y merengue suave y aireado.</p>
+                    <div class="product-price">$25.000</div>
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+            
+                <div class="product-card">
+                    <h3>Torta Red Velvet</h3>
+                    <p>Esponjoso bizcochuelo rojo con crema de queso suave y delicada.</p>
+                    <div class="product-price">$20.000</div>
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+            
+
+
+
+            </div>
+
+
+
+
+        </section>
+
+
         
-        <button type="submit" style="margin-left: 50px; margin-top: 40px;">Enviar</button>
-        </form>
-
-        <img src="logoLUMI.jpg" class="posicionlogo">
 
 
         <script src="" async defer></script>

@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+/*Paleta predefinida*/
+:root{
+        --primary: rgb(176, 118, 90);
+        --secondary: rgb(250, 238, 231);
+        --background: rgb(245, 229, 217);
+        --text: rgb(91, 62, 49);
+        --nav-bg: rgb(222, 204, 194);
+    }
+
+body{
+
+    background-color: var(--background);
+
+    .playwrite-ie-titulo {
+        font-family: "Playwrite IE", cursive;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        color:var(--primary);
+        text-align: center;
+        margin-top: 30px;
+        font-style: normal;
+        text-decoration: underline;
+        text-underline-offset: 5px; /*separación del subrayado*/
+        text-decoration-thickness: 1.5px; /*grosor del subrayado*/
+    }
+
+    .posicionlogo {
+        display: block;
+        margin: 0 auto;      /* 👈 centra */
+        width: 400px;
+    }
+
+
+    form {
+        background: var(--secondary);
+        padding: 30px;
+        border-radius: 10px;
+        width: 300px;
+    }
+
+    input {
+        width: 93%;
+        margin: 8px 0;
+        padding: 10px;
+    }
+
+    .subtitulos {
+        color: var(--primary);
+        font-family: "Quicksand", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .quicksand-label {
+        display: block;
+        font-family: "Quicksand", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        margin-left: 50px; 
+        margin-top: 10px;
+    }
+
+    /*Login*/
+    .login_container {
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+    }
+    .btn-login {
+        padding: 6px 14px;
+        border: 2px solid var(--text);
+        color: var(--secondary);
+        font-family: "Quicksand", sans-serif;
+        border-radius: 4px;
+    }
+    .btn-login:hover {
+      background: var(--secondary);
+      color: var(--secondary);
+      border: 2px solid var(--text);
+      transform: translateY(-1px);
+    }
+
+
+    /*Navbar*/
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--nav-bg);
+      padding: 0 48px;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+ 
+    .logo {
+      font-family: "Quicksand", sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 1px;
+    }
+ 
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+ 
+    .nav-links a {
+      color: var(--text);
+      font-family: "Quicksand", sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+ 
+    .nav-links a:hover { color: var(--primary); }
+
+    /*------------------------------------*/
+
+    .auth button {
+        margin-left: 10px;
+        padding: 8px 15px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .register {
+        background: var(--secondary);
+    }
+
+    section {
+        scroll-margin-top: 80px;
+    }
+
+    /*----------------------------------------------------*/
+
+    .products-section {
+      background: linear-gradient(160deg, var(--background) 0%, var(--background) 100%);
+      padding: 100px 24px 80px;
+    }
+ 
+    .products-section h2 {
+      text-align: center;
+      font-family: "Quicksand", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 40px;
+      letter-spacing: 0.5px;
+    }
+ 
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+ 
+    .product-card {
+      background: var(--nav-bg);
+      border-radius: 18px;
+      padding: 36px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      box-shadow: 0 4px 24px rgba(30, 58, 120, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+ 
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(30, 58, 120, 0.16);
+    }
+ 
+    .product-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      font-family: "Quicksand", sans-serif;
+    }
+ 
+    .product-card p {
+      font-size: 17px;
+      color: var(--primary);
+      font-family: "Quicksand", sans-serif;
+    }
+ 
+    .product-price {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 4px;
+      font-family: "Quicksand", sans-serif;
+    }
+ 
+    .btn-comprar {  
+      margin-top: auto;
+      display: block;
+      background: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: 7px;
+      padding: 9px 20px;
+      font-size: 14.5px;
+      font-weight: 650;
+      font-family: "Quicksand", sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+ 
+    .btn-comprar:hover {
+      background: var(--text);
+      transform: translateY(-1px);
+    }
+
+}
