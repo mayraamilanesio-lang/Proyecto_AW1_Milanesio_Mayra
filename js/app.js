@@ -1,7 +1,7 @@
 // ============================================================
 //  LUMI BAKERY — app.js
 // ============================================================
-
+ 
 // ----------------------------------------------------------
 // 1. ESTRUCTURA DE DATOS: rutas y títulos
 // ----------------------------------------------------------
@@ -9,14 +9,14 @@ const pages = [
   { title: "Inicio",    href: "index.html" },
   { title: "Productos", href: "index.html#productos" },
 ];
-
+ 
 // ----------------------------------------------------------
 // 2. ESTRUCTURA DE DATOS: productos
 // ----------------------------------------------------------
 const products = [
   {
     id: 1,
-    name: "Marquise",
+    name: "MARQUISE",
     description: "Brownie, dulce de leche y crema chantilly, coronado con merengue italiano o salsa de frutos rojos.",
     price: 35000,
     image: "img/marquise.png",
@@ -24,53 +24,55 @@ const products = [
   },
   {
     id: 2,
-    name: "Chocotorta",
+    name: "CHOCOTORTA",
     description: "Galletas Chocolinas embebidas en chocolatada con la clásica crema de Chocotorta.",
     price: 25000,
-    image: "img/chocotorta.png",
+    image: "img/chocotorta.jpeg",
     quantity: 0,
   },
   {
     id: 3,
-    name: "Torta Red Velvet",
+    name: "RED VELVET",
     description: "Bizcochuelo de chocolate color rojo, relleno a base de queso crema y chocolate blanco.",
     price: 20000,
     image: "img/redvelvet.png",
     quantity: 0,
   },
 ];
-
+ 
 // ----------------------------------------------------------
 // 3. COMPONENTE: Navbar
 // ----------------------------------------------------------
-function renderNavbar(containerId) {
+function renderNavbar(containerId, isLoggedIn) {
   const container = document.getElementById(containerId);
   if (!container) return;
-
+ 
   const navItems = pages
     .map(p => `<li><a href="${p.href}">${p.title}</a></li>`)
     .join("");
-
+ 
+  const authButton = isLoggedIn
+    ? `<li><button class="btn-logout" onclick="logout()">Cerrar sesión</button></li>`
+    : `<li><a href="login.html" class="btn-login">Iniciar sesión</a></li>`;
+ 
   container.innerHTML = `
     <nav class="navbar">
       <div class="logo">LUMI BAKERY</div>
       <ul class="nav-links">
         ${navItems}
-        <li>
-          <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
-        </li>
+        ${authButton}
       </ul>
     </nav>
   `;
 }
-
+ 
 // ----------------------------------------------------------
 // 4. COMPONENTE: Cards de productos
 // ----------------------------------------------------------
-function renderProducts(containerId) {
+function renderProducts(containerId, isLoggedIn) {
   const container = document.getElementById(containerId);
   if (!container) return;
-
+ 
   container.innerHTML = products
     .map(
       (p) => `
@@ -87,36 +89,37 @@ function renderProducts(containerId) {
         <h3>${p.name}</h3>
         <p>${p.description}</p>
         <div class="product-price">$${p.price.toLocaleString("es-AR")}</div>
-
-        <!-- Control de cantidad -->
+ 
         <div class="quantity-control">
           <button class="qty-btn" onclick="changeQty(${p.id}, -1)">−</button>
           <span class="qty-display" id="qty-${p.id}">0</span>
           <button class="qty-btn" onclick="changeQty(${p.id}, +1)">+</button>
         </div>
-
-        <button class="btn-comprar" onclick="addToCart(${p.id})">Agregar al carrito</button>
+ 
+        <button class="btn-comprar" onclick="${isLoggedIn ? `addToCart(${p.id})` : `goToLogin()`}">
+          Agregar al carrito
+        </button>
       </div>
     `
     )
     .join("");
 }
-
+ 
 // ----------------------------------------------------------
 // 5. LÓGICA DE CANTIDAD
 // ----------------------------------------------------------
 function changeQty(productId, delta) {
   const product = products.find((p) => p.id === productId);
   if (!product) return;
-
+ 
   product.quantity = Math.max(0, product.quantity + delta);
   document.getElementById(`qty-${productId}`).textContent = product.quantity;
 }
-
+ 
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
   if (!product) return;
-
+ 
   const qty = product.quantity;
   if (qty === 0) {
     showToast("Seleccioná al menos 1 unidad.");
@@ -126,33 +129,37 @@ function addToCart(productId) {
   product.quantity = 0;
   document.getElementById(`qty-${productId}`).textContent = 0;
 }
-
+ 
+// Redirige al login cuando el usuario no está logueado e intenta comprar
+function goToLogin() {
+  showToast("Iniciá sesión para comprar 😊");
+  setTimeout(() => { window.location.href = "login.html"; }, 1200);
+}
+ 
 // ----------------------------------------------------------
 // 6. AUTENTICACIÓN: login / logout
 // ----------------------------------------------------------
-
+ 
 function login(event) {
-  event.preventDefault();      
+  event.preventDefault();
+ 
   const email    = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
-
+ 
   if (!email || !password) {
     showFormError("Completá todos los campos.");
     return;
   }
-
-
+ 
   sessionStorage.setItem("lumiBakeryUser", email);
   window.location.href = "index.html";
 }
-
-
+ 
 function logout() {
   sessionStorage.removeItem("lumiBakeryUser");
   window.location.href = "login.html";
 }
-
-
+ 
 function requireAuth() {
   const user = sessionStorage.getItem("lumiBakeryUser");
   if (!user) {
@@ -160,9 +167,9 @@ function requireAuth() {
   }
   return user;
 }
-
+ 
 // ----------------------------------------------------------
-// 7. HELPERS: toast y error de formulario
+// 7. HELPERS
 // ----------------------------------------------------------
 function showToast(message) {
   let toast = document.getElementById("lumi-toast");
@@ -175,7 +182,7 @@ function showToast(message) {
   toast.classList.add("show");
   setTimeout(() => toast.classList.remove("show"), 3000);
 }
-
+ 
 function showFormError(message) {
   const el = document.getElementById("form-error");
   if (el) {
