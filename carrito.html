@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Carrito — LUMI Bakery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="img/logoWEB.png" />
+  </head>
+
+  <body>
+
+    <div id="navbar-container"></div>
+
+    <div class="carrito-header">
+      <h2>Tu carrito 🛒</h2>
+      <p>Revisá tus productos antes de confirmar</p>
+    </div>
+
+    <div class="carrito-wrap" id="carrito-contenido"></div>
+
+    <div class="carrito-resumen" id="carrito-resumen" style="display:none">
+      <div class="resumen-box">
+        <div class="resumen-fila"><span>Subtotal</span><span id="resumen-subtotal">$0</span></div>
+        <div class="resumen-fila"><span>Envío</span><span>Gratis 🎉</span></div>
+        <div class="resumen-fila resumen-total"><span>Total</span><span id="resumen-total">$0</span></div>
+        <button class="resumen-btn" onclick="finalizarCompra()">Finalizar compra</button>
+        <a href="index.html" class="resumen-seguir">← Seguir comprando</a>
+      </div>
+    </div>
+
+    <div id="lumi-toast"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+      // Auth guard
+      const userStr = sessionStorage.getItem("lumiBakeryUser");
+      if (!userStr) window.location.href = "login.html";
+
+      renderNavbar("navbar-container", userStr);
+      renderCarritoPage();
+
+      function renderCarritoPage() {
+        const carrito   = getCarrito();
+        const contenido = document.getElementById("carrito-contenido");
+        const resumen   = document.getElementById("carrito-resumen");
+
+        if (carrito.length === 0) {
+          contenido.innerHTML = `
+            <div class="carrito-vacio">
+              <p style="font-size:3rem">🍰</p>
+              <p>Tu carrito está vacío.</p>
+              <a href="index.html">Ver productos</a>
+            </div>`;
+          resumen.style.display = "none";
+          return;
+        }
+
+        resumen.style.display = "flex";
+
+        const filas = carrito.map(prod => `
+          <div class="carrito-item">
+            <img class="carrito-item-img" src="${prod.imagen}" alt="${prod.nombre}"
+                 onerror="this.src=''" />
+            <div class="carrito-item-info">
+              <p class="carrito-item-nombre">${prod.nombre}</p>
+              <p class="carrito-item-cat">${prod.categoria}</p>
+              <p class="carrito-item-precio">${formatPrecio(prod.precio)} c/u</p>
+            </div>
+            <div class="carrito-item-qty">
+              <button class="qty-btn" onclick="cambiarCantidad(${prod.id}, -1)">−</button>
+              <span>${prod.cantidad}</span>
+              <button class="qty-btn" onclick="cambiarCantidad(${prod.id}, 1)">+</button>
+            </div>
+            <p class="carrito-item-subtotal">${formatPrecio(prod.precio * prod.cantidad)}</p>
+            <button class="btn-eliminar" onclick="eliminarProducto(${prod.id})" title="Eliminar">✕</button>
+          </div>`).join("");
+
+        contenido.innerHTML = filas;
+
+        const total = carrito.reduce((a, p) => a + p.precio * p.cantidad, 0);
+        document.getElementById("resumen-subtotal").textContent = formatPrecio(total);
+        document.getElementById("resumen-total").textContent    = formatPrecio(total);
+      }
+
+      function cambiarCantidad(id, delta) {
+        const carrito = getCarrito();
+        const idx = carrito.findIndex(p => p.id === id);
+        if (idx < 0) return;
+        carrito[idx].cantidad += delta;
+        if (carrito[idx].cantidad <= 0) {
+          carrito.splice(idx, 1);
+          showToast("🗑️ Producto eliminado");
+        }
+        saveCarrito(carrito);
+        actualizarContadorNav();
+        renderCarritoPage();
+      }
+
+      function eliminarProducto(id) {
+        const carrito = getCarrito().filter(p => p.id !== id);
+        saveCarrito(carrito);
+        showToast("🗑️ Producto eliminado");
+        actualizarContadorNav();
+        renderCarritoPage();
+      }
+
+      function finalizarCompra() {
+        localStorage.removeItem("lumiCarrito");
+        showToast("✓ ¡Compra realizada! Gracias por elegirnos 🍰");
+        actualizarContadorNav();
+        setTimeout(() => renderCarritoPage(), 400);
+      }
+    </script>
+  </body>
+</html>
