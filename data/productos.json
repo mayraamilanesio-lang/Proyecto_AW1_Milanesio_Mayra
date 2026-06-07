@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "categoria": "Tortas",
+    "nombre": "MARQUISE",
+    "descripcion": "Brownie, dulce de leche y crema chantilly, coronado con merengue italiano o salsa de frutos rojos.",
+    "precio": 35000,
+    "imagen": "img/marquise.png"
+  },
+  {
+    "id": 2,
+    "categoria": "Tortas",
+    "nombre": "CHOCOTORTA",
+    "descripcion": "Galletas Chocolinas embebidas en chocolatada con la clásica crema de Chocotorta.",
+    "precio": 25000,
+    "imagen": "img/chocotorta.jpeg"
+  },
+  {
+    "id": 3,
+    "categoria": "Tortas",
+    "nombre": "RED VELVET",
+    "descripcion": "Bizcochuelo de chocolate color rojo, relleno a base de queso crema y chocolate blanco.",
+    "precio": 20000,
+    "imagen": "img/redvelvet.png"
+  },
+  {
+    "id": 4,
+    "categoria": "Cookies",
+    "nombre": "COOKIE CLÁSICA",
+    "descripcion": "Cookie de manteca con chips de chocolate negro, crocante por fuera y suave por dentro.",
+    "precio": 2500,
+    "imagen": "img/cookie-clasica.jpg"
+  },
+  {
+    "id": 5,
+    "categoria": "Cookies",
+    "nombre": "COOKIE DOBLE CHOCOLATE",
+    "descripcion": "Masa de cacao intenso con trozos de chocolate con leche.",
+    "precio": 3000,
+    "imagen": "img/cookie-doble-chocolate.jpg"
+  },
+  {
+    "id": 6,
+    "categoria": "Cookies",
+    "nombre": "COOKIE RELLENA",
+    "descripcion": "Cookie de vainilla con chips de chocolate, rellena de cremosa crema de avellanas.",
+    "precio": 3500,
+    "imagen": "img/cookie-rellena.jpg"
+  }
+]

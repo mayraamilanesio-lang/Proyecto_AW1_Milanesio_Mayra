@@ -569,3 +569,33 @@ section {
   font-size: .72rem;
   font-weight: 700;
 }
+
+/* ===== TÍTULO DE CATEGORÍA ===== */
+.categoria-titulo {
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 40px 0 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+/* ===== SECCIÓN POR CATEGORÍA ===== */
+.categoria-seccion {
+  max-width: 960px;
+  margin: 0 auto 40px;
+}
+
+.categoria-titulo {
+  font-family: "Quicksand", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+  padding-left: 4px;
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+}
